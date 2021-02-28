@@ -12,3 +12,15 @@ for (let i = 1; i <= 10; i++) {
 }
 
 console.log(sum);
+var path = require('path');
+var os = require('os');
+var math = './math.js';
+var fs = require('fs');
+fs.readFile('./index.md', (err, content) => {
+  console.log(err, content.toString());
+});
+
+var filePath = path.join(__dirname, 'file.md');
+var freeM = os.freemem();
+var cpus = os.cpus().length;
+// console.log(filePath, freeM, cpus);
