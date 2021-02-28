@@ -1,6 +1,12 @@
 var { cpus, freemem, uptime, version } = require('os');
 console.log(cpus().length, freemem(), uptime(), version());
-var { readFile, unlink } = require('fs');
+var { readFile, readFileSync, unlink } = require('fs');
+
+var syncResult = readFileSync('./app.js');
+console.log(syncResult);
+readFile('./area.js', (err, content) => {
+  console.log(content.toString());
+});
 
 var buffer1 = Buffer.alloc(15);
 var buffer2 = Buffer.allocUnsafe(15);
