@@ -1,12 +1,16 @@
 let http = require('http');
 let server = http.createServer(handleRequest);
 let fs = require('fs');
-const { Z_FIXED } = require('zlib');
 function handleRequest(req, res) {
-  if (req.method === 'GET' && req.url === '/') {
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Welcome to Index page');
-  } else if (req.method === 'GET' && req.url === '/node') {
+  if (req.method === 'GET' && req.url === '/file') {
+    fs.readFile('./node.html', (err, content) => {
+      if (err) {
+        console.log(err);
+      }
+      res.setHeader('Content-Type', 'text/html');
+      res.end(content);
+    });
+  } else if (req.method === 'GET' && req.url === '/stream') {
     res.setHeader('Content-Type', 'text/html');
     fs.createReadStream('./node.html').pipe(res);
   } else {
