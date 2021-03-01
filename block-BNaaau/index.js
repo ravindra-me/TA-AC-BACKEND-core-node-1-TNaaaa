@@ -107,23 +107,35 @@ var server = http.createServer(handleRequest);
 //   console.log('server listening on port 2345');
 // });
 
+// function handleRequest(req, res) {
+//   if (req.method === 'GET' && req.url === '/users') {
+//     res.setHeader('Content-Type', 'text/html');
+
+//     res.end(`<form>
+//           <input type="text"/>
+//           <input type="email"/>
+//         </form>`);
+//   } else if (req.method === 'POST' && req.url === '/users') {
+//     res.setHeader('Content-Type', 'text/plain');
+
+//     console.log(req.method);
+//     res.end('Posted for the second time');
+//   } else {
+//     res.end('error');
+//   }
+// }
+// server.listen(8000, () => {
+//   console.log('server listening on port 8000');
+// });
+
+var url = require('url');
+
 function handleRequest(req, res) {
-  if (req.method === 'GET' && req.url === '/users') {
-    res.setHeader('Content-Type', 'text/html');
-
-    res.end(`<form>
-          <input type="text"/>
-          <input type="email"/>
-        </form>`);
-  } else if (req.method === 'POST' && req.url === '/users') {
-    res.setHeader('Content-Type', 'text/plain');
-
-    console.log(req.method);
-    res.end('Posted for the second time');
-  } else {
-    res.end('error');
-  }
+  let parseUrl = url.parse(req.url, true);
+  console.log(parseUrl.pathname, req.url, parseUrl.query.email);
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(parseUrl.query));
 }
-server.listen(8000, () => {
-  console.log('server listening on port 8000');
+server.listen(5100, () => {
+  console.log('server is listening at port 5100');
 });
