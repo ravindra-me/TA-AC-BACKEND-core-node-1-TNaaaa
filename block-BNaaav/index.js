@@ -3,9 +3,9 @@ var http = require('http');
 var server = http.createServer(handleRequest);
 var fs = require('fs');
 function handleRequest(req, res) {
-  if (req.url === '/index.html' && req.method === 'GET') {
+  if (req.url === '/' && req.method === 'GET') {
     fs.createReadStream('.' + req.url).pipe(res);
-  } else if (req.url === '/about.html' && req.method === 'GET') {
+  } else if (req.url === '/about' && req.method === 'GET') {
     fs.createReadStream('.' + req.url).pipe(res);
   } else if (req.url.split('.').pop() === 'css') {
     res.setHeader('Content-Type', 'text/css');
