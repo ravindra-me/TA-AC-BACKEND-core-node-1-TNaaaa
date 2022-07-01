@@ -1,26 +1,12 @@
-function square(n) {
-  return n * n;
-}
-square(2);
-
-console.log('Welcome to node.js');
-
+console.log("Welcome to Node.js");
+let os = require("os");
+let { readFile, unlink } = require("fs");
+let cpus = os.cpus().length;
+console.log(cpus);
+console.log(os.freemem());
 let sum = 0;
-
-for (let i = 1; i <= 10; i++) {
-  sum += i;
+for (let index = 1; index <= 10; index++) {
+  sum += index;
 }
 
 console.log(sum);
-var path = require('path');
-var os = require('os');
-var math = './math.js';
-var fs = require('fs');
-fs.readFile('./index.md', (err, content) => {
-  console.log(err, content.toString());
-});
-
-var filePath = path.join(__dirname, 'file.md');
-var freeM = os.freemem();
-var cpus = os.cpus().length;
-// console.log(filePath, freeM, cpus);
